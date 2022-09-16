@@ -16,7 +16,7 @@
         </filter>
       </defs>
     </svg>
-    <div style="margin: 0 30px;"><img class="head" src="@/assets/labarberia-logo-head.png"></div>
+    <div style="margin: 0 30px;"><img class="head" src="@/assets/labarberia-logo-whead.png"></div>
     <img class="undertitle" src="@/assets/labarberia-logo-untertitle.png">
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   name: "logoComponent",
   mounted() {
     console.log("mounted");
-    const circleType = new CircleType(document.getElementById('title'));
+    const circleType = new CircleType(document.querySelector('#logo .title'));
 
     circleType.radius(280);
 
