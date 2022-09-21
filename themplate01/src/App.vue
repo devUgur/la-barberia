@@ -1,16 +1,39 @@
 <template>
 
   <start-loader-component></start-loader-component>
-  <u-devtool-component></u-devtool-component>
 
   <TopbarComponent></TopbarComponent>
+
+  <div id="app-layout">
+    <div id="view">
+      <router-view v-slot="{ Component }">
+        <transition :name="transitionName" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
+    <!--
+    <router-view v-slot="{ Component }">
+        <transition v-bind:css="false" appear v-on:enter="enter" v-on:leave="leave">
+      <transition :name="transitionName" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+
+    -->
+    <footer-component></footer-component>
+  </div>
+
+  <!--
   <transition v-bind:css="false" appear v-on:enter="enter" v-on:leave="leave">
 
     <div id="app-layout">
 
-      <div style="height: 200vh"></div>
+      <router-view></router-view>
     </div>
   </transition>
+  -->
+
   <!--
 
   <div id="view" @scroll="handleViewScroll($event)">
@@ -29,14 +52,17 @@
 <script>
 import TopbarComponent from '@/components/navibars/Topbar.component';
 //import uDevtoolComponent from "@/components/udevtool/udevtool.component";
-import { TimelineMax, TweenMax, Power4 } from 'gsap';
-
+import {  TweenMax, Power4 } from 'gsap';
 import StartLoaderComponent from "@/components/loaders/StartLoader.component";
+
+import FooterComponent from "@/components/footer/Footer.component";
+
 export default{
   components: {
     TopbarComponent,
     //uDevtoolComponent,
-    StartLoaderComponent
+    StartLoaderComponent,
+    FooterComponent
   },
   data(){
     return{
@@ -49,10 +75,17 @@ export default{
       const toDepth = to.meta.index
       const fromDepth = from.meta.index
       if(toDepth < fromDepth){
-        this.transitionName = 'slide-right'
+        //this.transitionName = 'slide-right'
+
       }else{
-        this.transitionName = 'slide-left'
+        //this.transitionName = 'slide-left'
+        this.transitionName = "fade"
       }
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
       //console.log(toDepth, fromDepth)
     }
   },
@@ -64,26 +97,24 @@ export default{
       this.$store.dispatch('style/handleResize');
     },
     enter(el, done) {
-      const tl = new TimelineMax({
-        onComplete: done
-      })
-
-      tl.set(el, {
-        delay: 3,
+      TweenMax.fromTo(el, 1, {
         autoAlpha: 0,
-        scale: 2,
-        transformOrigin: '50% 50%'
-      })
-
-      tl.to(el, 1, {
+        scale: 1.5,
+      }, {
         autoAlpha: 1,
         scale: 1,
-        ease: Power4.easeOut
-      })
+        transformOrigin: '50% 50%',
+        ease: Power4.easeOut,
+        onComplete: done
+      });
     },
     leave(el, done) {
-      TweenMax.to(el, 1, {
-        scale: 0,
+      TweenMax.fromTo(el, 1, {
+        autoAlpha: 1,
+        scale: 1,
+      }, {
+        autoAlpha: 0,
+        scale: 0.8,
         ease: Power4.easeOut,
         onComplete: done
       });
@@ -108,12 +139,13 @@ export default{
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap');
 :root{
   --logo-color: #38344b;
   --dark-green-bg: #122423;
   --abril-font-family: 'Abril Fatface', cursive;
   --nav-font-family: 'Anton', sans-serif;
+  --raleway-font-family: 'Raleway', sans-serif;
 }
 
 body{
@@ -136,13 +168,38 @@ body{
 #app-layout{
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 #view{
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh;
   mix-blend-mode: screen;
   overflow-x: hidden;
+}
+.view{
+  min-height: 100vh;
+}
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
@@ -177,14 +234,15 @@ body{
   transition: all 0.3s ease-in;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease-out;
-}
+
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
@@ -192,7 +250,7 @@ body{
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: 0.3s ease-out;
+  transition: 0.3s ease;
 }
 .slide-down-enter-from,
 .slide-down-leave-to {
@@ -221,4 +279,36 @@ body{
 .grow-out-leave-active {
   transition: 0.3s ease-out;
 }
+
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+
+  #app-layout{
+    /*margin: 0 20px;*/
+  }
+
+  #view{
+    padding: 0 20px;
+  }
+}
+
 </style>

@@ -77,7 +77,7 @@ const actions = {
                 }
             }else{
                 deviceMode = _deviceMode;
-                console.log(deviceMode);
+                //console.log(deviceMode);
             }
         }
 

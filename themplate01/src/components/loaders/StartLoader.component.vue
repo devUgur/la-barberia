@@ -85,5 +85,9 @@ export default {
   z-index: 2000;
 
   background-color: var(--dark-green-bg);
+
+  overflow: hidden;
+
+  max-height: 100vh;
 }
 </style>
