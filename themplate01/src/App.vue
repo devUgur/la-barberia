@@ -143,9 +143,16 @@ export default{
 :root{
   --logo-color: #38344b;
   --dark-green-bg: #122423;
+  --das-bg: #c2cecb;
+  --light-text-color: #e5e5e5;
+  --dsas-color: #3a3d3d;
+  --light-color: #b9b0a3;
+  --active-nav-color: #d54646;
+
   --abril-font-family: 'Abril Fatface', cursive;
   --nav-font-family: 'Anton', sans-serif;
   --raleway-font-family: 'Raleway', sans-serif;
+
 }
 
 body{
@@ -159,7 +166,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--light-text-color);
 
   position: relative;
 }
@@ -176,8 +183,9 @@ body{
 
 #view{
   min-height: 100vh;
-  mix-blend-mode: screen;
+  /* mix-blend-mode: screen; */
   overflow-x: hidden;
+  transition: padding 0.5s;
 }
 .view{
   min-height: 100vh;
@@ -236,7 +244,7 @@ body{
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
@@ -307,7 +315,7 @@ body{
   }
 
   #view{
-    padding: 0 20px;
+    /* padding: 0 20px; */
   }
 }
 

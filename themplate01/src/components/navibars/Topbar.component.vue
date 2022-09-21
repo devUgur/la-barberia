@@ -22,12 +22,17 @@
 
     <FullPageMenuComponent :routes="routes" :show="menuIsOpen"></FullPageMenuComponent>
 
-    <svg ref="menuBtn" @click="toggleMenu" viewBox="0 0 12 10" class="hamburger menu-btn" id="menuBtn" height="30px" width="120px">
-      <path d="M10,2 L2,2" class="upper" style="fill: none;stroke: #fff;stroke-linecap: round;"/>
-      <path d="M2,5 L10,5" class="middle" style="fill: none;stroke: #fff;stroke-linecap: round;"/>
-      <path d="M10,8 L2,8" class="lower" style="fill: none;stroke: #fff;stroke-linecap: round;"/>
+    <svg id="menuBtn" class="ham ham2" viewBox="0 0 100 100" width="80" @click="toggleMenu">
+      <path
+          class="line top"
+          d="m 70,33 h -40 c -6.5909,0 -7.763966,-4.501509 -7.763966,-7.511428 0,-4.721448 3.376452,-9.583771 13.876919,-9.583771 14.786182,0 11.409257,14.896182 9.596449,21.970818 -1.812808,7.074636 -15.709402,12.124381 -15.709402,12.124381" />
+      <path
+          class="line middle"
+          d="m 30,50 h 40" />
+      <path
+          class="line bottom"
+          d="m 70,67 h -40 c -6.5909,0 -7.763966,4.501509 -7.763966,7.511428 0,4.721448 3.376452,9.583771 13.876919,9.583771 14.786182,0 11.409257,-14.896182 9.596449,-21.970818 -1.812808,-7.074636 -15.709402,-12.124381 -15.709402,-12.124381" />
     </svg>
-
   </div>
 </template>
 
@@ -35,9 +40,6 @@
 <script>
 import MiniLogoComponent from "@/components/logo/MiniLogo.component";
 import FullPageMenuComponent from "@/components/navibars/FullPageMenu.component";
-
-import { TimelineLite } from "gsap";
-import { Power2 } from "gsap";
 
 /* import { onMounted, ref } from "vue"; */
 
@@ -62,23 +64,7 @@ export default {
     }
   },
   setup(){
-    /*
-    const box = ref();
-    let animation = null;
 
-    onMounted(() => {
-      animation = new TimelineLite({paused: true, reversed: true})
-          .to(box.getElementsByClassName('upper'), 0.5, {attr: {d: "M8,2 L2,8"}, x: 1, ease:Power2.easeInOut}, 'start')
-          .to(box.$refs.menuBtn.getElementsByClassName('middle'), 0.5, {autoAlpha: 0}, 'start')
-          .to(box.$refs.menuBtn.getElementsByClassName('lower'), 0.8, {attr: {d: "M8,8 L2,2"}, x: 1, ease:Power2.easeInOut}, 'start')
-    });
-
-    const play = () => animation.play();
-    const pause = () => animation.pause();
-    const restart = () => animation.restart();
-    const reverse = () => animation.reverse();
-
-     */
   },
   computed: {
     scrollTop(){
@@ -97,38 +83,17 @@ export default {
   methods: {
     toSlim(){
       this.$refs.nav.style.height = "100px";
-      /* this.$refs.nav.classList.add('slim'); */
+      this.$refs.nav.classList.add('slim');
 
     },
     toFit(){
       this.$refs.nav.style.height = "140px";
-      /* this.$refs.nav.classList.remove('slim'); */
+      this.$refs.nav.classList.remove('slim');
     },
     toggleMenu(){
       this.menu = !this.menu;
       this.$store.dispatch('menu/toggleMenu');
-      this.toggleMenuBtn();
-    },
-    initMenuBtn(){
-      // burger menu animation
-
-      this.tl = new TimelineLite({paused: true, reversed: true});
-
-      this.tl
-          .to(this.$refs.menuBtn.getElementsByClassName('upper'), 0.5, {attr: {d: "M8,2 L2,8"}, x: 1, ease:Power2.easeInOut}, 'start')
-          .to(this.$refs.menuBtn.getElementsByClassName('middle'), 0.5, {autoAlpha: 0}, 'start')
-          .to(this.$refs.menuBtn.getElementsByClassName('lower'), 0.8, {attr: {d: "M8,8 L2,2"}, x: 1, ease:Power2.easeInOut}, 'start')
-
-    },
-    toggleMenuBtn(){
-      if(this.tl){
-        console.log("passiert");
-        this.$refs.menuBtn.reversed() ? this.tl.play() : this.tl.reverse();
-      }else{
-        console.log(this.tl);
-      }
     }
-
   },
   watch: {
     scrollTop(newVal){
@@ -154,7 +119,7 @@ export default {
     }
   },
   mounted() {
-    this.initMenuBtn();
+    //this.initMenuBtn();
     // for open menu
   },
 }
@@ -193,6 +158,8 @@ a{
   display: inline-block;
   position: relative;
   margin: 0 10px;
+
+  transition: font-size 0.3s;
 }
 
 a:after {
@@ -224,7 +191,8 @@ circle.active{
   opacity: 1;
 }
 a.router-link-exact-active{
-  color: #d54646
+  color: #d54646;
+  font-size: 22px;
 }
 
 /* topbar css */
@@ -278,8 +246,6 @@ nav.vertical li {
 
 #menuBtn{
   display: none;
-  background: transparent;
-  border: none;
   cursor: pointer;
   z-index: 1200;
 }
@@ -319,6 +285,50 @@ nav.vertical li {
 .main-menu .nav-index{
 
 }
+
+
+/* MENU BTN Style */
+svg{
+  height: 50px;
+}
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.hamRotate.active {
+  transform: rotate(45deg);
+  stroke-linecap: round;
+}
+.hamRotate180.active {
+  transform: rotate(180deg);
+}
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #e5e5e5;
+  stroke-width: 5;
+
+}
+
+.ham2 .top {
+  stroke-dasharray: 40 121;
+}
+.ham2 .bottom {
+  stroke-dasharray: 40 121;
+}
+.ham2.active .top {
+  stroke-dashoffset: -102px;
+}
+.ham2.active .bottom {
+  stroke-dashoffset: -102px;
+}
+
+
 
 @media screen and (max-width:767px) {
 

@@ -56,10 +56,10 @@ section.intro{
   justify-content: center;
 
   position: relative;
-  background-color: #78efb9;
 
 }
 
+/*
 .intro-bg-img{
   background-image: url("@/assets/instagram/07.jpg");
   background-repeat: no-repeat;
@@ -72,6 +72,8 @@ section.intro{
   max-width: calc(100% - 15%);
   width: 100%;
 }
+
+ */
 
 .intro-text{
   font-family: var(--abril-font-family);
@@ -87,26 +89,13 @@ section.intro{
 }
 
 img{
-  max-width:100%;
-  height:auto;
+  max-width: 100%;
+  min-width: 300px;
+  height: auto;
+  object-fit: scale-down; max-width: 100%
+
 }
 section.intro img{
-  border-radius: 50%;
 }
 
-.one{
-  margin: 0 auto;
-  left: 0px;
-
-}
-.two{
-  height: 600px;
-
-  left: 100px;
-  top: 400px;
-}
-.three{
-  height: 300px;
-  right: 0;
-}
 </style>

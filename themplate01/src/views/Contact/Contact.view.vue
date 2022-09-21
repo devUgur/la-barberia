@@ -3,6 +3,11 @@
     <transition name="bounce">
       <h1 v-if="show">Hast du noch Fragen?</h1>
     </transition>
+
+    <transition name="grow-in">
+      <img v-if="show" src="@/assets/instagram/09.jpg">
+    </transition>
+
     <div class="container">
       <div class="left">
         <div></div>
@@ -18,6 +23,7 @@ export default {
   data(){
     return{
       show: false,
+      showImg: false,
     }
   },
   mounted() {
@@ -39,5 +45,9 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
+}
+
+img{
+  height: 600px;
 }
 </style>

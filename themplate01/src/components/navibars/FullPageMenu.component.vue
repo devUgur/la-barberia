@@ -6,7 +6,9 @@
       appear
   >
   <div id="full-page-menu" v-if="show">
-    <div class="header"></div>
+    <div class="header">
+      <p> Navigation</p>
+    </div>
     <div class="body">
       <nav>
         <transition-group
@@ -24,7 +26,9 @@
         </transition-group>
       </nav>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+      <p>Copyright</p>
+    </div>
   </div>
   </transition>
 </template>
@@ -84,9 +88,10 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
+  bottom: 0;
+  padding-top: 140px;
+  max-height: 100vh;
 
-  padding-top: 100px;
-  height: 100vh;
   width: 100%;
 
   background-color: rgba(18, 36, 35, 0.68);
@@ -97,6 +102,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: #e1e1e1;
 }
 
 /* FULLPAGE MENU CSS*/
@@ -104,7 +110,6 @@ export default {
 .fullpage-menu-inner{
   display: flex;
   align-items: center;
-  height: 100%;
   padding: 100px 60px;
 }
 
@@ -132,9 +137,62 @@ a{
   display: inline-block;
   position: relative;
   margin: 10px;
+
+  transition: all 0.5s;
+}
+
+a:hover{
+  color: #d54646
+}
+
+a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #eed37a;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover:after {
+  color: #eed37a;
+  transform: scaleY(1);
+  transform-origin: bottom left;
 }
 
 .nav-index{
   margin: 10px 0;
+}
+
+.header{
+  padding: 20px 10px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+.footer{
+  padding: 20px 10px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #full-page-menu a{
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #full-page-menu{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
 }
 </style>
