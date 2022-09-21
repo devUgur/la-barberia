@@ -79,7 +79,7 @@ export default{
 
       }else{
         //this.transitionName = 'slide-left'
-        this.transitionName = "fade"
+        this.transitionName = "fade" // "slide"
       }
 
       window.scrollTo({

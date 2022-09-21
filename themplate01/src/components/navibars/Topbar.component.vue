@@ -159,7 +159,7 @@ a{
   position: relative;
   margin: 0 10px;
 
-  transition: font-size 0.3s;
+  transition: font-size 0.3s ease;
 }
 
 a:after {

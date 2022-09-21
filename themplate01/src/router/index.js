@@ -8,6 +8,7 @@ import ServicesComponent from "@/components/services/Services.Component";
 import TreatmentsView from '@/views/treatments/Treatments.view'
 import LandingPageView from "@/views/landing-page/LandingPage.view";
 import ContactView from '@/views/Contact/Contact.view'
+import AboutUsView from "@/views/AboutUs/AboutUs.view";
 
 const routes = [
   {
@@ -18,7 +19,7 @@ const routes = [
   {
     path: '/about-us',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: AboutUsView
   },
   {
     path: '/treatments',
