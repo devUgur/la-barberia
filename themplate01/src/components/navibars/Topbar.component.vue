@@ -13,7 +13,7 @@
 
 
     <div class="booking">
-      <router-link v-if="!mobileMode" to="/booking">
+      <router-link v-if="!mobileMode" to="/">
         <!-- {{ windowWidth }} -->
         Termin buchen
       </router-link>
@@ -214,7 +214,6 @@ a.router-link-exact-active{
 nav.vertical li {
   display: table-cell;
   position: relative;
-
 }
 
 .menu.content{
