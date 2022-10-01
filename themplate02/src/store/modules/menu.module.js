@@ -12,8 +12,7 @@ const getters = {
 // Actions
 const actions = {
     toggleMenu({state, commit, dispatch}) {
-        state.open = !state.open;
-        commit('SET_MENU_OPEN', state.open);
+        commit('SET_MENU_OPEN', !state.open);
         dispatch('toggleMenuBtn');
     },
     toggleMenuBtn({state}){

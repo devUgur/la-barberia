@@ -18,7 +18,7 @@ export default {
   methods: {
     curvedTitle(){
       let circleType = new CircleType(this.$refs.title);
-      circleType.radius(55);
+      circleType.radius(50);
       console.log("curvedTitle");
     }
   },
@@ -34,7 +34,7 @@ export default {
 
 .title{
   font-family: var(--abril-font-family);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 3px;
   object-fit: scale-down;

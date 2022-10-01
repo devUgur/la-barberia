@@ -4,7 +4,7 @@ import HomeView from '@/views/Home.view'
 import AboutView from '@/views/About.view';
 import ServicesView from "@/views/Services.view";
 import ContactView from '@/views/Contact.view'
-
+import NotFoundView from "@/views/NotFound.view";
 import DevView from "@/views/Dev.view";
 
 const routes = [
@@ -42,6 +42,12 @@ const routes = [
     path: '/dev',
     name: 'DevView',
     component: DevView
+  },
+
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("@/views/NotFound.view.vue"),
   },
 ]
 

@@ -24,12 +24,27 @@
       </div>
 
     </section>
+
+    <section class="logo">
+      <LogoComponent></LogoComponent>
+      <SmallLogoComponent></SmallLogoComponent>
+      <MiniLogoComponent></MiniLogoComponent>
+    </section>
   </div>
 </template>
 
 <script>
+import LogoComponent from "@/components/logo/logo.component";
+import SmallLogoComponent from "@/components/logo/SmallLogo.component";
+import MiniLogoComponent from "@/components/logo/MiniLogo.component";
+
 export default {
   name: "DevView",
+  components: {
+    LogoComponent,
+    SmallLogoComponent,
+    MiniLogoComponent,
+  },
   computed:{
     windowWidth(){
       return this.$store.getters['style/getWindowWidth'];

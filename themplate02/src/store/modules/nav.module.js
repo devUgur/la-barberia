@@ -29,10 +29,13 @@ const actions = {
             });
         }
     },
-    scrollTo2(name){
-        document.getElementById(name).scrollIntoView({
-            behavior: 'smooth'
-        })
+    scrollTo2({},name){
+        let toScroll = document.getElementById(name);
+        if(toScroll){
+            toScroll.scrollIntoView({
+                behavior: 'smooth'
+            })
+        }
     }
 }
 

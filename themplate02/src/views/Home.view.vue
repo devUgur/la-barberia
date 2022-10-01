@@ -5,28 +5,40 @@
     </section>
 
     <section id="about-us">
-      <h3> Section 2 </h3>
-      <h4> ABOUT US </h4>
+      <AboutView></AboutView>
     </section>
 
     <section id="service">
-      <h3> Section 3 </h3>
-      <h4> SERVICE </h4>
+      <ServicesView></ServicesView>
     </section>
 
     <section id="contact">
-      <h3> Section 4 </h3>
-      <h4> CONTACT </h4>
+      <ContactView></ContactView>
     </section>
+
+    <ScrollToTopBtnComponent></ScrollToTopBtnComponent>
   </div>
 </template>
 
 <script>
 import IntroComponent from "@/components/intro/Intro.component";
+import Intro2Component from "@/components/intro/Intro2.component";
+import AboutView from "@/views/About.view";
+import ServicesView from "@/views/Services.view";
+import ContactView from "@/views/Contact.view";
+
+import ScrollToTopBtnComponent from "@/components/home/ScrollToTopBtn.component";
+
 export default {
   name: 'HomeView',
   components: {
-    IntroComponent
+    IntroComponent,
+    Intro2Component,
+    AboutView,
+    ServicesView,
+    ContactView,
+
+    ScrollToTopBtnComponent,
   }
 }
 </script>
@@ -35,11 +47,7 @@ export default {
 #home-view{
 }
 
-section{
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  justify-content: center;
+section:not(:first-of-type){
   min-height: 100vh;
 }
 </style>
