@@ -159,12 +159,53 @@ body{
 
 
 /* Transitions */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+
+/* we will explain what these classes do next!
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
+*/
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* fade UP */
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.fade-down-enter-active,
+.fade-down-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-down-enter-from,
+.fade-down-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+
 /* slide up */
 .slide-up-enter-active {
   transition: all .2s ease;
@@ -180,12 +221,12 @@ body{
 /* bounce */
 
 .bounce-enter-active {
-  animation: bounce-in 0.5s;
+  animation: bounce-in2 0.5s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
+  animation: bounce-in2 0.5s reverse;
 }
-@keyframes bounce-in {
+@keyframes bounce-in2 {
   0% {
     transform: scale(0);
   }
@@ -197,14 +238,27 @@ body{
   }
 }
 
-
-.show-enter-active,
-.show-leave-enter {
-  transform: translateX(0);
-  transition: all .3s linear;
+.scale-enter-active {
+  animation: bounce-in 1s reverse;
 }
-.show-enter,
-.show-leave-to {
-  transform: translateX(100%);
+.scale-leave-active {
+  animation: bounce-in 1s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: skewY(0deg);
+  }
+  25% {
+    transform: skewY(2deg);
+  }
+  50% {
+    transform: skewY(-5deg);
+  }
+  75% {
+    transform: skewY(0deg);
+  }
+  100% {
+    transform: skewY(-120deg);
+  }
 }
 </style>

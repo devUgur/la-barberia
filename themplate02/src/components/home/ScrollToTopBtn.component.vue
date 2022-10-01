@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <transition name="show">
-      <div v-if="show" id="scrollToTopBtn" class="blur" @click="scrollToTop">
+    <transition name="fade-up" mode="in-out">
+      <div v-if="show && !menuIsOpen" id="scrollToTopBtn" class="blur" @click="scrollToTop">
         <img src="@/assets/icons/arrow-up.png">
       </div>
     </transition>
@@ -19,6 +19,9 @@ export default {
   computed: {
     scrollTop(){
       return this.$store.getters['style/getScrollTop'];
+    },
+    menuIsOpen(){
+      return this.$store.getters['menu/isOpen'];
     }
   },
   watch: {
@@ -57,6 +60,12 @@ export default {
   backdrop-filter: blur(8px);
    */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#scrollToTopBtn:hover{
+  border: 2px solid var(--light-color);
+  padding: 10px 15px;
+  cursor: pointer;
 }
 #scrollToTopBtn img{
   width: 24px;

@@ -13,7 +13,11 @@
 
     <FullPageMenuComponent :routes="routes" :show="menuIsOpen"></FullPageMenuComponent>
 
-    <AppointmentBtnComponent :show="showAppointmentBtn"></AppointmentBtnComponent>
+
+    <div class="appointmentBtnLayout">
+      <AppointmentBtnComponent :show="showAppointmentBtn"></AppointmentBtnComponent>
+    </div>
+
 
 
 
@@ -218,6 +222,13 @@ a.router-link-exact-active{
   padding: 0 40px;
   max-width: 500px;
   min-width: 400px;
+  width: 100%;
+
+}
+
+.appointmentBtnLayout{
+  height: 36px;
+  max-width: 180px;
   width: 100%;
 }
 

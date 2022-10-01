@@ -39,7 +39,7 @@ export default {
     ContactView,
 
     ScrollToTopBtnComponent,
-  }
+  },
 }
 </script>
 

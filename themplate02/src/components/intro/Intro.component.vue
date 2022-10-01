@@ -2,19 +2,38 @@
 
   <div id="introComponent">
     <div id="bgImage" ref="bgImage"></div>
-    <div class="content" v-if="!menuIsOpen">
-      <div class="logoContent">
-        <CurvedLogoComponent></CurvedLogoComponent>
-      </div>
+    <transition name="fade">
+      <div class="content" v-if="!menuIsOpen">
+        <div class="logoContent">
+          <transition name="fade-down">
+            <CurvedLogoComponent :class="{'hover-bouncing': logoHoverBouncing}" v-if="showAppointmentBtn"></CurvedLogoComponent>
+          </transition>
+        </div>
 
-      <div class="appointmentContent">
-        <AppointmentBtnComponent :show="showAppointmentBtn"></AppointmentBtnComponent>
-        <div class="trimmer"></div>
-        <div class="moreInfo" @click="moreInfo">
-          Mehr erfahren
+        <div class="appointmentContent">
+
+          <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
+            <transition name="fade-up">
+              <AppointmentBtnComponent v-if="!menuIsOpen && showAppointmentBtn" :show="true" ></AppointmentBtnComponent>
+            </transition>
+          </div>
+          <transition class="trimmer" name="fade-up">
+            <div v-if="showAppointmentBtn" class="trimmer"></div>
+          </transition>
+
+
+          <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
+            <transition name="fade-up">
+              <div class="moreInfo" v-if="showAppointmentBtn" @click="moreInfo">
+                Mehr erfahren
+              </div>
+              </transition>
+          </div>
+
+
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -22,6 +41,7 @@
 import AppointmentBtnComponent from "@/components/intro/AppointmentBtn.component";
 import CurvedLogoComponent from "@/components/logo/CurvedLogo.component";
 import LogoComponent from "@/components/logo/logo.component";
+
 export default {
   name: "IntroComponent",
   components: {
@@ -31,12 +51,19 @@ export default {
   },
   data(){
     return {
-      showAppointmentBtn: true,
+      showAppointmentBtn: false,
+      logoHoverBouncing: false
     }
   },
   methods: {
     moreInfo(){
       this.$store.dispatch('nav/scrollTo2', 'about-us')
+    },
+    greyBgColor(){
+      this.$refs.bgImage.classList.add('no-focus');
+    },
+    coloredBgColor(){
+      this.$refs.bgImage.classList.remove('no-focus');
     }
   },
   computed: {
@@ -61,6 +88,11 @@ export default {
 
       }
     }
+  },
+  mounted() {
+    setTimeout( () => {
+      this.showAppointmentBtn = true;
+    }, 200);
   }
 }
 </script>
@@ -93,6 +125,7 @@ export default {
 
 }
 
+
 .no-focus{
   filter: grayscale(100%);
 }
@@ -106,11 +139,11 @@ export default {
 
   margin-top: 30px;
   max-width: 600px;
-  width: calc(100% - 150px); /* margin include */
+  width: calc(100% - 130px); /* margin include */
   transition: all 0.3s;
 
   /*background-color: #275eb2;*/
-  padding: 30px;
+  padding: 20px;
 }
 
 .logoContent{
@@ -121,14 +154,16 @@ export default {
 
 
 .trimmer{
+  max-width: 260px;
   width: 100%;
   border-bottom: 2px solid var(--light-color);
 }
 
 .appointmentContent{
-  width: 100%;
+  width: calc(100% - 40px);
   margin-top: 60px;
-  border-radius: 10px;
+
+  padding: 20px;
 
   /*
   background-color: rgba(8, 14, 14, 0.85);
@@ -139,6 +174,15 @@ export default {
   display: flex;
   flex-direction: column;
   place-items: center;
+  justify-content: space-between;
+  height: 150px;
+}
+
+.btn-layout{
+  max-width: 260px;
+  width: 100%;
+  height: 45px;
+  margin: 10px 0;
 }
 
 .appointmentBtn{
@@ -154,13 +198,20 @@ export default {
 }
 
 .moreInfo{
-  padding: 15px 20px;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  place-items: center;
 
   background-color: rgba(8, 14, 14, 0.85);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   cursor: s-resize;
 }
+
+
 
 @media screen and (max-width: 767px) {
   #bgImage{

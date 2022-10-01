@@ -1,6 +1,6 @@
 <template>
   <div id="appointmentBtn" class="booking">
-    <transition name="bounce" :delay="2000">
+    <transition name="bounce">
       <a v-if="show" class="router-link" onclick="return false;" @click="openPopup">Termin buchen</a>
     </transition>
   </div>
@@ -19,9 +19,9 @@ export default {
 
 #appointmentBtn{
   position: relative;
-  max-width: 180px;
+
   width: 100%;
-  height: 35px;
+  height: 100%;
 }
 
 
