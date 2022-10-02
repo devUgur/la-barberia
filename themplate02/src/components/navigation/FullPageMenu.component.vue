@@ -22,7 +22,7 @@
               v-if="show"
           >
             <div class="router-link" v-for="(route, index) in routes" :key="route.name" :data-index="index">
-              <a active-class="active"
+              <a active-class="active" :class="{'active-route': (route.scrollName === currentViewName)}"
                  @click="routeTo(route.scrollName)">{{ route.name }}</a>
               <div class="nav-index">0{{ index+1 }}</div>
             </div>
@@ -59,10 +59,17 @@ export default {
   name: "FullPageMenu",
   props: ['routes', 'show'],
   components: { CurvedLogoComponent, AppointmentBtnComponent },
+  computed: {
+    currentViewName(){
+      console.log(this.$store.getters['nav/currentView']);
+      return this.$store.getters['nav/currentView'];
+    }
+  },
   methods: {
     routeTo(targetID){
       this.$store.dispatch('menu/toggleMenu');
       this.$store.dispatch('nav/scrollTo3', targetID );
+      this.$store.commit('nav/SET_CURRENT_VIEW', targetID);
     },
     enter(el, done) {
       const tl = new TimelineMax({
@@ -211,6 +218,10 @@ a:hover{
 
 .header .logo{
   max-width: 160px;
+}
+
+.active-route{
+  color: var(--active-nav-color) !important;
 }
 
 @media screen and (max-width: 767px) {

@@ -93,7 +93,7 @@ export default {
       const tl = gsap.to(el, {
         opacity: 1,
         stagger: 0.20,
-        duration: 0.5
+        duration: 0.2
       })
     },
     afterEnterAnimation(el){}

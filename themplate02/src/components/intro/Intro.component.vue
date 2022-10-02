@@ -5,7 +5,7 @@
     <transition name="fade">
       <div class="content" v-if="!menuIsOpen">
         <div class="logoContent">
-          <transition name="fade-right">
+          <transition name="bounce">
             <CurvedLogoComponent :class="{'hover-bouncing': logoHoverBouncing}" v-if="showAppointmentBtn"></CurvedLogoComponent>
           </transition>
         </div>
@@ -13,18 +13,18 @@
         <div class="appointmentContent">
 
           <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
-            <transition name="fade-left">
-              <AppointmentBtnComponent v-if="!menuIsOpen && showAppointmentBtn" :show="true" ></AppointmentBtnComponent>
+            <transition name="bounce">
+              <AppointmentBtnComponent v-if="!menuIsOpen && bounceAppointmentBtn" :show="true" ></AppointmentBtnComponent>
             </transition>
           </div>
-          <transition class="trimmer" name="fade-left">
-            <div v-if="showAppointmentBtn" class="trimmer"></div>
+          <transition class="trimmer" name="fade-up">
+            <div v-if="animateTrimmer" class="trimmer"></div>
           </transition>
 
 
           <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
-            <transition name="fade-left">
-              <div class="moreInfo" v-if="showAppointmentBtn" @click="moreInfo">
+            <transition name="fade-up">
+              <div class="moreInfo" v-if="animateMoreInfo" @click="moreInfo">
                 Mehr erfahren
               </div>
               </transition>
@@ -52,7 +52,10 @@ export default {
   data(){
     return {
       showAppointmentBtn: false,
-      logoHoverBouncing: false
+      logoHoverBouncing: false,
+      bounceAppointmentBtn: false,
+      animateMoreInfo: false,
+      animateTrimmer: false,
     }
   },
   methods: {
@@ -86,6 +89,25 @@ export default {
         this.showAppointmentBtn = false;
         this.$refs.bgImage.classList.add('no-focus');
 
+      }
+    },
+    showAppointmentBtn(newVal){
+      if(newVal){
+        setTimeout( () => {
+          this.bounceAppointmentBtn = true;
+        }, 200)
+
+        setTimeout( () => {
+          this.animateTrimmer = true;
+        }, 300)
+
+        setTimeout( () => {
+          this.animateMoreInfo = true;
+        }, 400)
+      }else{
+          this.bounceAppointmentBtn = false;
+          this.animateMoreInfo = false;
+          this.animateTrimmer = false;
       }
     }
   },
@@ -154,7 +176,7 @@ export default {
 
 
 .trimmer{
-  max-width: 260px;
+  max-width: 120px;
   width: 100%;
   border-bottom: 2px solid var(--light-color);
 }
@@ -174,15 +196,14 @@ export default {
   display: flex;
   flex-direction: column;
   place-items: center;
-  justify-content: space-between;
-  height: 150px;
+  justify-content: space-evenly;
+  height: 130px;
 }
 
 .btn-layout{
   max-width: 260px;
   width: 100%;
   height: 45px;
-  margin: 10px 0;
 }
 
 .appointmentBtn{

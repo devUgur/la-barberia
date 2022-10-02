@@ -3,53 +3,62 @@
 
     <ViewTitleComponent :trigger-name="'about-us'" :title="'Über Uns'" ></ViewTitleComponent>
 
-    <div class="container">
+    <div class="container container1">
 
       <div class="flex-container">
-        <div class="about-image">
-          <div class="title"> Geschäftsführer & Master of Barbiers </div>
-          <img src="@/assets/images/torben01.jpeg">
-        </div>
 
-        <div class="about-text">
-          <div class="about-title">ALTBEWÄHRTE PERFEKTION IN MODERNER INTERPRETATION</div>
-          <div class="value">
-            Yves BUBERT, MITTLERWEILE 30 JAHRE IM BERUF, HAT EIN GESPÜR FÜR DEN ZEITGEIST.
-            SEIN UNERMÜDLICHES ENGAGEMENT UND SEIN EINSATZ FÜR DIE MODEWELT HAT SICH GELOHNT,
-            DENN ER HAT SICH ALS „ENFANT TERRIBLE“ DER BRANCHE EINEN NAMEN GEMACHT.
-            DIE ENTSCHEIDUNG SEINE KRAFT AUF SEIN UNTERNEHMEN ZU FOKUSSIEREN,
-            WAR NACH 15 JAHREN AKTIVITÄT FÜR L’ORÉAL BEWUSST GEWÄHLT.
-            <br> <br>
-            DURCH SEIN GESPÜR FÜR DIE INDIVIDUELLE WIRKUNG DER PERSÖNLICHKEIT LEGT ER
-            DEN SCHWERPUNKT BEI DER BERATUNG AUF DIE KOMMUNIKATION UND DIE KÖRPERSPRACHE.
-            DIE FÄHIGKEIT, GEFÜHLE SICHTBAR ZU MACHEN, IST TEIL DES GANZEN. ES IST SEINE PASSION.
+        <transition appear name="fade-right">
+          <div class="about-image" v-if="showContent1">
+            <div class="title"> Geschäftsführer & Master of Barbiers </div>
+            <img src="@/assets/images/torben01.jpeg">
           </div>
-        </div>
+        </transition>
+
+        <transition appear name="fade-left">
+          <div class="about-text" v-if="showContent1">
+            <div class="about-title">ALTBEWÄHRTE PERFEKTION IN MODERNER INTERPRETATION</div>
+            <div class="value">
+              Yves BUBERT, MITTLERWEILE 30 JAHRE IM BERUF, HAT EIN GESPÜR FÜR DEN ZEITGEIST.
+              SEIN UNERMÜDLICHES ENGAGEMENT UND SEIN EINSATZ FÜR DIE MODEWELT HAT SICH GELOHNT,
+              DENN ER HAT SICH ALS „ENFANT TERRIBLE“ DER BRANCHE EINEN NAMEN GEMACHT.
+              DIE ENTSCHEIDUNG SEINE KRAFT AUF SEIN UNTERNEHMEN ZU FOKUSSIEREN,
+              WAR NACH 15 JAHREN AKTIVITÄT FÜR L’ORÉAL BEWUSST GEWÄHLT.
+              <br> <br>
+              DURCH SEIN GESPÜR FÜR DIE INDIVIDUELLE WIRKUNG DER PERSÖNLICHKEIT LEGT ER
+              DEN SCHWERPUNKT BEI DER BERATUNG AUF DIE KOMMUNIKATION UND DIE KÖRPERSPRACHE.
+              DIE FÄHIGKEIT, GEFÜHLE SICHTBAR ZU MACHEN, IST TEIL DES GANZEN. ES IST SEINE PASSION.
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
-
-    <div class="container">
+    {{ showContent1 }} , {{ showContent2 }} , {{deviceMode}}
+    <div class="container container2">
 
       <div class="flex-container">
-        <div class="about-image">
-          <div class="title"> Barbier </div>
-          <img src="@/assets/images/buni02.jpeg">
-        </div>
-
-        <div class="about-text">
-          <div class="about-title">BÜNYAMIN AKSOY</div>
-          <div class="value">
-            Yves BUBERT, MITTLERWEILE 30 JAHRE IM BERUF, HAT EIN GESPÜR FÜR DEN ZEITGEIST.
-            SEIN UNERMÜDLICHES ENGAGEMENT UND SEIN EINSATZ FÜR DIE MODEWELT HAT SICH GELOHNT,
-            DENN ER HAT SICH ALS „ENFANT TERRIBLE“ DER BRANCHE EINEN NAMEN GEMACHT.
-            DIE ENTSCHEIDUNG SEINE KRAFT AUF SEIN UNTERNEHMEN ZU FOKUSSIEREN,
-            WAR NACH 15 JAHREN AKTIVITÄT FÜR L’ORÉAL BEWUSST GEWÄHLT.
-            <br> <br>
-            DURCH SEIN GESPÜR FÜR DIE INDIVIDUELLE WIRKUNG DER PERSÖNLICHKEIT LEGT ER
-            DEN SCHWERPUNKT BEI DER BERATUNG AUF DIE KOMMUNIKATION UND DIE KÖRPERSPRACHE.
-            DIE FÄHIGKEIT, GEFÜHLE SICHTBAR ZU MACHEN, IST TEIL DES GANZEN. ES IST SEINE PASSION.
+        <transition appear name="fade-right">
+          <div class="about-image" v-if="showContent2">
+            <div class="title"> Barbier </div>
+            <img src="@/assets/images/buni02.jpeg">
           </div>
-        </div>
+        </transition>
+
+        <transition appear name="fade-left">
+          <div class="about-text" v-if="showContent2">
+            <div class="about-title">BÜNYAMIN AKSOY</div>
+            <div class="value">
+              Yves BUBERT, MITTLERWEILE 30 JAHRE IM BERUF, HAT EIN GESPÜR FÜR DEN ZEITGEIST.
+              SEIN UNERMÜDLICHES ENGAGEMENT UND SEIN EINSATZ FÜR DIE MODEWELT HAT SICH GELOHNT,
+              DENN ER HAT SICH ALS „ENFANT TERRIBLE“ DER BRANCHE EINEN NAMEN GEMACHT.
+              DIE ENTSCHEIDUNG SEINE KRAFT AUF SEIN UNTERNEHMEN ZU FOKUSSIEREN,
+              WAR NACH 15 JAHREN AKTIVITÄT FÜR L’ORÉAL BEWUSST GEWÄHLT.
+              <br> <br>
+              DURCH SEIN GESPÜR FÜR DIE INDIVIDUELLE WIRKUNG DER PERSÖNLICHKEIT LEGT ER
+              DEN SCHWERPUNKT BEI DER BERATUNG AUF DIE KOMMUNIKATION UND DIE KÖRPERSPRACHE.
+              DIE FÄHIGKEIT, GEFÜHLE SICHTBAR ZU MACHEN, IST TEIL DES GANZEN. ES IST SEINE PASSION.
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
 
@@ -64,8 +73,64 @@ export default {
   components: {
     ViewTitleComponent
   },
+  data(){
+    return{
+      showContent1: false,
+      showContent2: false,
+    }
+  },
+  computed:{
+    deviceMode(){
+      return this.$store.getters['style/getDeviceMode'];
+    }
+  },
   mounted() {
+    const observer = new IntersectionObserver(([entry]) => {
 
+      // If the element to watch is intersecting within the threshold
+      if (entry && entry.isIntersecting) {
+        if(entry.target.classList.contains('container1')){
+          setTimeout( () => {
+
+          }, 500);
+
+          this.showContent1 = true;
+        }
+
+        if(entry.target.classList.contains('container2')){
+          setTimeout( () => {
+
+          }, 500);
+
+          this.showContent2 = true;
+        }
+
+        //console.log("Intersection Observer entered -> ", this.title);
+      }
+
+      // If the element is not intersecting, run the (optional) unintersecting callback
+      else {
+
+        if(this.deviceMode.maxWidth === null){
+          if(entry.target.classList.contains('container1')){
+            this.showContent1 = false;
+          }
+
+          if(entry.target.classList.contains('container2')){
+            this.showContent2 = false;
+          }
+        }
+
+        //console.log("Intersection Observer leaved -> ", this.title);
+      }
+    }, {
+      threshold: 0.3
+    });
+
+    let containers = document.querySelectorAll('#about .container');
+    containers.forEach( container => {
+      observer.observe(container);
+    })
   }
 }
 </script>
@@ -75,12 +140,37 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  min-height: 150vh;
+
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: space-evenly;
+
+
 }
 
 .container .title{
   background-color: #111c1c;
   padding: 15px 10px;
   font-size: 20px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container1{
+  width: calc(100% - 60px);
+  min-height: 800px;
+}
+
+.container2{
+  width: calc(100% - 60px);
+  min-height: 400px;
 }
 
 .about-image{

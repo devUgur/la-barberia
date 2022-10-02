@@ -13,6 +13,7 @@ const actions = {
     handleResize({commit, dispatch}){
         commit('style/SET_WINDOW_HEIGHT', window.innerHeight, {root: true});
         commit('style/SET_WINDOW_WIDTH', window.innerWidth, {root: true});
+        dispatch('style/handleDeviceMode', {},{root: true});
     },
     handleScroll({commit}, value){
         commit('style/SET_SCROLL_TOP', window.pageYOffset, {root: true});

@@ -48,12 +48,8 @@ const getters = {
 
 // Actions
 const actions = {
-    init(){
+    init({dispatch}){
         console.log("StyleModule initialized!");
-    },
-    initEventListeners({dispatch}){
-        window.addEventListener('resize', dispatch('handleResize'));
-        window.addEventListener('scroll', dispatch('handleScroll'));
     },
     handleDeviceMode({commit, state}){
         let deviceMode;
@@ -77,7 +73,7 @@ const actions = {
             commit('SET_DEVICE_MODE', deviceMode);
         }
 
-    }
+    },
 }
 
 // Mutations

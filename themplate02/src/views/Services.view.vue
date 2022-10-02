@@ -66,7 +66,7 @@ export default {
         },
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.6,
         onComplete: done,
         delay: 0.5 + el.dataset.index * 0.2
       })

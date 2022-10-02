@@ -47,6 +47,9 @@ export default {
       if (entry && entry.isIntersecting) {
         console.log("Intersection Observer entered -> ", entry.target.id);
 
+        // save current view name to nav store
+        this.$store.dispatch('nav/handleCurrentView', entry.target.id);
+
         let name = 'La Barberia';
         if(entry.target.id === 'intro'){
           document.title = name;
