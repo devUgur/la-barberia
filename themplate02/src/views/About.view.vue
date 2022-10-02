@@ -1,7 +1,7 @@
 <template>
   <div id="about" class="view">
 
-    <ViewTitleComponent :title="'Über Uns'" ></ViewTitleComponent>
+    <ViewTitleComponent :trigger-name="'about-us'" :title="'Über Uns'" ></ViewTitleComponent>
 
     <div class="container">
 

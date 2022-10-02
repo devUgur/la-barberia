@@ -5,7 +5,7 @@
     <transition name="fade">
       <div class="content" v-if="!menuIsOpen">
         <div class="logoContent">
-          <transition name="fade-down">
+          <transition name="fade-right">
             <CurvedLogoComponent :class="{'hover-bouncing': logoHoverBouncing}" v-if="showAppointmentBtn"></CurvedLogoComponent>
           </transition>
         </div>
@@ -13,17 +13,17 @@
         <div class="appointmentContent">
 
           <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
-            <transition name="fade-up">
+            <transition name="fade-left">
               <AppointmentBtnComponent v-if="!menuIsOpen && showAppointmentBtn" :show="true" ></AppointmentBtnComponent>
             </transition>
           </div>
-          <transition class="trimmer" name="fade-up">
+          <transition class="trimmer" name="fade-left">
             <div v-if="showAppointmentBtn" class="trimmer"></div>
           </transition>
 
 
           <div class="btn-layout" @mouseleave="coloredBgColor();" @mouseover="greyBgColor()">
-            <transition name="fade-up">
+            <transition name="fade-left">
               <div class="moreInfo" v-if="showAppointmentBtn" @click="moreInfo">
                 Mehr erfahren
               </div>

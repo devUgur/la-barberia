@@ -36,6 +36,20 @@ const actions = {
                 behavior: 'smooth'
             })
         }
+    },
+    scrollTo3({}, targetID){
+        let toScroll = document.getElementById(targetID);
+        console.log(targetID);
+        if(toScroll){
+            toScroll.scrollIntoView();
+        }
+    },
+    getNameFromId({state}, id){
+        state.routes.forEach(route => {
+            if(route.id === id){
+                return route.name;
+            }
+        })
     }
 }
 

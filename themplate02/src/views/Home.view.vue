@@ -40,6 +40,42 @@ export default {
 
     ScrollToTopBtnComponent,
   },
+  mounted(){
+    const observer = new IntersectionObserver(([entry]) => {
+
+      // If the element to watch is intersecting within the threshold
+      if (entry && entry.isIntersecting) {
+        console.log("Intersection Observer entered -> ", entry.target.id);
+
+        let name = 'La Barberia';
+        if(entry.target.id === 'intro'){
+          document.title = name;
+        }
+        if(entry.target.id === 'about-us'){
+          document.title = name + ' - Über Uns';
+        }
+        if(entry.target.id === 'service'){
+          document.title = name + ' - Dienstleistungen';
+        }
+        console.log(entry.target.id)
+        if(entry.target.id === 'contact'){
+          document.title = name + ' - Kontakt';
+        }
+      }
+
+      // If the element is not intersecting, run the (optional) unintersecting callback
+      else {
+        console.log("Intersection Observer leaved -> ", entry.target.id);
+      }
+    }, {
+      threshold: 0.3,
+    });
+
+    const sections = document.querySelectorAll('#home-view section');
+    sections.forEach( section => {
+      observer.observe(section);
+    })
+  }
 }
 </script>
 

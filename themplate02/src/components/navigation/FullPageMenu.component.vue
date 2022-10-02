@@ -21,8 +21,9 @@
               @enter="enterMenu"
               v-if="show"
           >
-            <div class="router-link" v-for="(route, index) in routes" :key="route.name" :data-index="index" @click="this.$store.dispatch('menu/toggleMenu')">
-              <router-link active-class="active" :to="route.to">{{ route.name }}</router-link>
+            <div class="router-link" v-for="(route, index) in routes" :key="route.name" :data-index="index">
+              <a active-class="active"
+                 @click="routeTo(route.scrollName)">{{ route.name }}</a>
               <div class="nav-index">0{{ index+1 }}</div>
             </div>
           </transition-group>
@@ -59,6 +60,10 @@ export default {
   props: ['routes', 'show'],
   components: { CurvedLogoComponent, AppointmentBtnComponent },
   methods: {
+    routeTo(targetID){
+      this.$store.dispatch('menu/toggleMenu');
+      this.$store.dispatch('nav/scrollTo3', targetID );
+    },
     enter(el, done) {
       const tl = new TimelineMax({
         onComplete: done
@@ -197,6 +202,11 @@ export default {
 .router-link{
   font-size: 14px;
   color: #eed37a !important;
+}
+
+a:hover{
+  color: #d54646;
+  cursor: pointer;
 }
 
 .header .logo{

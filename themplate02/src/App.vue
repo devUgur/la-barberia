@@ -36,6 +36,10 @@ export default {
       loadedData: false,
     }
   },
+  created() {
+    // set page title
+    document.title = "La Barberia Dortmund"
+  },
   mounted() {
 
     // inits
@@ -200,6 +204,8 @@ body{
   opacity: 0;
 }
 
+/* fade DOWN */
+
 .fade-down-enter-active,
 .fade-down-leave-active {
   transition: all 0.5s ease;
@@ -212,6 +218,28 @@ body{
 }
 
 
+/* fade RIGHT */
+.fade-right-enter-active,
+.fade-right-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-right-enter-from,
+.fade-right-leave-to {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+/* fade LEFT */
+.fade-left-enter-active,
+.fade-left-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-left-enter-from,
+.fade-left-leave-to {
+  transform: translateX(100px);
+  opacity: 0;
+}
 
 /* bounce */
 

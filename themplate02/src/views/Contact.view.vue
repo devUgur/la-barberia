@@ -1,6 +1,6 @@
 <template>
   <div id="ContactView" class="view">
-    <ViewTitleComponent :title="title"></ViewTitleComponent>
+    <ViewTitleComponent :title="title" :trigger-name="'contact'"></ViewTitleComponent>
     <div class="container layout">
       <div class="text-call"> Sie haben uns was zum Mitteilen?</div>
       <div class="flex-layout">

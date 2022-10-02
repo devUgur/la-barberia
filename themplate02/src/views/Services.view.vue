@@ -1,6 +1,6 @@
 <template>
   <div id="services-view" class="view">
-    <ViewTitleComponent :title="title"></ViewTitleComponent>
+    <ViewTitleComponent :title="title" :trigger-name="'service'"></ViewTitleComponent>
     <div class="services-list">
       <div class="header title" v-if="show">
         <img src="@/assets/icons/comb-4.png">
