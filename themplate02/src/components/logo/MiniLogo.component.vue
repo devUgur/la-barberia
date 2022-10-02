@@ -32,6 +32,12 @@ export default {
 
 <style scoped>
 
+#mini-logo{
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
 .title{
   font-family: var(--abril-font-family);
   font-size: 12px;

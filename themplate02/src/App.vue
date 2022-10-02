@@ -157,6 +157,11 @@ body{
   */
 }
 
+.light-blur{
+  background-color: rgba(18, 36, 35, 0.47);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
 
 /* Transitions */
 
@@ -206,17 +211,7 @@ body{
   opacity: 0;
 }
 
-/* slide up */
-.slide-up-enter-active {
-  transition: all .2s ease;
-}
-.slide-up-leave-active {
-  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-up-enter, .slide-fade-leave-to {
-  transform: translateY(100vh);
-  opacity: 0;
-}
+
 
 /* bounce */
 

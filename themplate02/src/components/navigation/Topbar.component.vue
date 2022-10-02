@@ -1,8 +1,10 @@
 <template>
 
-  <div id="topnav" class="nav layout" ref="nav" :class="{'blur': !menuIsOpen}">
+  <div id="topnav" class="nav layout" ref="nav" :class="{'light-blur': !menuIsOpen}">
     <div class="logo content" @click="this.$router.push('/')">
-     <MiniLogoComponent v-if="!menuIsOpen"></MiniLogoComponent>
+     <transition name="fade">
+       <MiniLogoComponent v-if="!menuIsOpen && showAppointmentBtn"></MiniLogoComponent>
+     </transition>
     </div>
     <nav class="menu vertical content">
       <div class="router-list" v-for="route in routes" :key="route.name">
@@ -101,8 +103,12 @@ export default {
 
       if(newVal >= 40){
         this.showAppointmentBtn = true;
+        this.$refs.nav.classList.remove('light-blur');
+        this.$refs.nav.classList.add('blur');
       }else{
         this.showAppointmentBtn = false;
+        this.$refs.nav.classList.remove('blur');
+        this.$refs.nav.classList.add('light-blur');
       }
       /*
       if(newVal === 0){
@@ -163,6 +169,8 @@ export default {
 }
 
 .logo{
+  max-width: 100px;
+  width: 100%;
 }
 
 .router-list{
