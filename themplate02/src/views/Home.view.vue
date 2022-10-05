@@ -74,7 +74,7 @@ export default {
       threshold: 0.3,
     });
 
-    const sections = document.querySelectorAll('#home-view section');
+    const sections = document.querySelectorAll('#home-view > section');
     sections.forEach( section => {
       observer.observe(section);
     })
@@ -88,5 +88,6 @@ export default {
 
 section:not(:first-of-type){
   min-height: 100vh;
+  padding-top: 100px;
 }
 </style>

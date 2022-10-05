@@ -9,7 +9,7 @@
 
         <transition appear name="fade-right">
           <div class="about-image" v-if="showContent1">
-            <div class="title"> Geschäftsführer & Master of Barbiers </div>
+            <div class="title"> Geschäftsführer & Meister der Barbiere </div>
             <img src="@/assets/images/torben01.jpeg">
           </div>
         </transition>
@@ -47,11 +47,11 @@
           <div class="about-text" v-if="showContent2">
             <div class="about-title">BÜNYAMIN AKSOY</div>
             <div class="value">
-              Yves BUBERT, MITTLERWEILE 30 JAHRE IM BERUF, HAT EIN GESPÜR FÜR DEN ZEITGEIST.
-              SEIN UNERMÜDLICHES ENGAGEMENT UND SEIN EINSATZ FÜR DIE MODEWELT HAT SICH GELOHNT,
-              DENN ER HAT SICH ALS „ENFANT TERRIBLE“ DER BRANCHE EINEN NAMEN GEMACHT.
-              DIE ENTSCHEIDUNG SEINE KRAFT AUF SEIN UNTERNEHMEN ZU FOKUSSIEREN,
-              WAR NACH 15 JAHREN AKTIVITÄT FÜR L’ORÉAL BEWUSST GEWÄHLT.
+              Bunyamin Aksoy ist ein kreativer, fokussierter und immer freundlicher Barbier,
+              der sein Handwerk liebt. Er ist spezialisiert auf Qualität und Wertschätzung für seine Gäste.
+              Seine Selbstsicherheit und Kreativität machen ihn zu einem jungen, gutaussehenden Babier.
+              Old school in seiner Ausstrahlung, ist er immer gesprächig und die Haare und Bärte, die er verleiht,
+              sind von maximaler Frische. Die Stunde genießen ist für Bunyamin Aksoy keine Frage – es ist eine Aussage.
               <br> <br>
               DURCH SEIN GESPÜR FÜR DIE INDIVIDUELLE WIRKUNG DER PERSÖNLICHKEIT LEGT ER
               DEN SCHWERPUNKT BEI DER BERATUNG AUF DIE KOMMUNIKATION UND DIE KÖRPERSPRACHE.
@@ -198,6 +198,7 @@ export default {
 .about-text .value{
   padding-top: 20px;
   color: var(--light-color);
-  font-size: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 </style>

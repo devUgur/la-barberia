@@ -1,25 +1,35 @@
 <template>
-  <div id="app-layout" v-if="loadedData">
-    <TopbarComponent></TopbarComponent>
-    <div id="app-view">
-      <router-view v-slot="{ Component }">
-        <transition :name="pageTransitionName" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </div>
+  <div id="app-layout" @load="loaded">
+    <div v-if="loadedData">
+      <TopbarComponent></TopbarComponent>
+      <div id="app-view">
+        <router-view v-slot="{ Component }">
+          <transition :name="pageTransitionName" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </div>
 
-    <FooterComponent></FooterComponent>
-  </div>
-  <div v-else>
-    <!-- Start loader implementing -->
-    <h3> Startloader </h3>
+      <FooterComponent></FooterComponent>
+    </div>
+    <div class="loader" v-else>
+      <div>
+        <h1>Lädt</h1>
+        <h2 class='loader--text'>0%</h2>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import TopbarComponent from "@/components/navigation/Topbar.component";
 import FooterComponent from "@/components/footer/Footer.component";
+
+import smoothscroll from 'smoothscroll-polyfill';
+
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/all";
+import imagesLoaded from "imagesloaded";
 
 export default {
   components: {
@@ -34,6 +44,7 @@ export default {
   data(){
     return{
       loadedData: false,
+      instagramAccessToken: 'IGQVJWNVpQdnh5UFRpazJrQ2FTNDhBLTlqNHM3c2hTdjZAmRUwyNzBnSWE0U3ZAvcG1sUGFUYnhVVWx3TTZADNDhONVJBTUQ0eFJ1ZAmpPQVh4UWwxbWNZAZAnZAPa3FlOUh0RFI0VTdWYjdVUl8tdkFVT1otSgZDZD'
     }
   },
   created() {
@@ -46,12 +57,19 @@ export default {
     this.$store.dispatch('style/init');
     this.$store.dispatch('listeners/init');
 
+    // kick off the polyfill!
+    smoothscroll.polyfill();
+
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', this.handleViewScroll);
 
     setTimeout( () => {
       this.loadedData = true;
     }, 3000);
+
+
+
+
   },
   methods: {
     handleViewScroll(){
@@ -60,6 +78,9 @@ export default {
     handleResize(){
       this.$store.dispatch('listeners/handleResize');
     },
+    loaded(){
+      this.loadedData = true;
+    }
   }
 }
 </script>
@@ -84,10 +105,23 @@ export default {
   --active-nav-color: #d54646;
   --golden-color:  #eed37a;
   --green-img-filter: hue-rotate(300deg);
+
+  /* box-shadows */
+  --box-shadow-1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow-2: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  /* color palette 1 */
+  --palette-1-color-1: #DAD7CD;
+  --palette-1-color-2: #A3B18A;
+  --palette-1-color-3: #588157;
+  --palette-1-color-4: #3A5A40;
+  --palette-1-color-5: #344E41;
 }
 
 html {
+  /*
   scroll-behavior: smooth;
+   */
 }
 
 body{
@@ -137,6 +171,24 @@ body{
   width: calc(100% - 60px);
 }
 
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--dark-green-bg);
+  color: white;
+  z-index: 2000;
+
+
+
+  display: flex;
+  justify-content: center;
+  place-items: center;
+
+  text-align: center;
+}
 
 .flex-container{
   display: flex;

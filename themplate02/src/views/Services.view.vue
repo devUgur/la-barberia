@@ -33,6 +33,8 @@ import ViewTitleComponent from "@/components/home/ViewTitle.component";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import Preisliste from "@/objects/preisliste";
+
 export default {
   name: "ServicesView",
   components: {
@@ -41,12 +43,7 @@ export default {
   data: () => {
     return{
       title: 'Dienstleisungen',
-      services: [
-        { name: 'Haarschnitt' , price: 35 },
-        { name: 'Bartrasur' , price: 30 },
-        { name: 'Nassrasur' , price: 20 },
-        { name: 'Fadecut' , price: 20 },
-      ],
+      services: Preisliste,
       show: false
     }
   },
@@ -87,9 +84,10 @@ export default {
   display: flex;
   flex-direction: column;
   place-items: center;
+  justify-content: space-between;
 
 
-
+  /*background-color: #275eb2;*/
 
   color: var(--light-color);
 
@@ -121,6 +119,8 @@ export default {
   max-width: 900px;
   width: calc(100% - 40px);
   padding: 0 20px;
+
+  /*background-color: #42b983;*/
 }
 .service{
   display: flex;

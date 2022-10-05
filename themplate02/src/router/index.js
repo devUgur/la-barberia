@@ -4,8 +4,11 @@ import HomeView from '@/views/Home.view'
 import AboutView from '@/views/About.view';
 import ServicesView from "@/views/Services.view";
 import ContactView from '@/views/Contact.view'
-import NotFoundView from "@/views/NotFound.view";
 import DevView from "@/views/Dev.view";
+import ImpressumView from "@/views/Impressum.view";
+import InstagramGalleryComponent from "@/components/instagram/InstagramGallery.component";
+
+import store from '../store/index';
 
 const routes = [
   {
@@ -34,6 +37,11 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/impressum',
+    name: 'ImpressumView',
+    component: ImpressumView
+  },
+  {
     path: '/booking',
     name: 'BookingView',
     component: DevView
@@ -43,7 +51,11 @@ const routes = [
     name: 'DevView',
     component: DevView
   },
-
+  {
+    path: '/instagram',
+    name: 'Instagram',
+    component: InstagramGalleryComponent
+  },
   {
     path: "/:pathMatch(.*)*",
     name: "not-found",
@@ -54,6 +66,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('nav/scrollToTop');
+  next();
 })
 
 export default router

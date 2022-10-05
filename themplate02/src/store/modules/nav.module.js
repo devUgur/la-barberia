@@ -22,6 +22,9 @@ const getters = {
 
 // Actions
 const actions = {
+    scrollToTop(){
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    },
     scrollTo({},hash) {
         if (hash !== "") {
             console.log(hash)

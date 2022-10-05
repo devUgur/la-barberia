@@ -8,7 +8,7 @@
     </div>
     <nav class="menu vertical content">
       <div class="router-list" v-for="route in routes" :key="route.name">
-        <div class="router-link" @click="scrollTo(route.scrollName)"> {{route.name}} </div>
+        <div class="router-link" :class="{'active-route': (route.scrollName === currentViewName)}" @click="scrollTo(route.scrollName)"> {{route.name}} </div>
       </div>
     </nav>
 
@@ -80,6 +80,9 @@ export default {
     },
     routes(){
       return this.$store.getters['nav/routes'];
+    },
+    currentViewName(){
+      return this.$store.getters['nav/currentView'];
     }
   },
   methods: {
@@ -136,6 +139,29 @@ export default {
 }
 </script>
 
+<style>
+/*
+a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #eed37a;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover:after {
+  color: #eed37a;
+  transform: scaleY(1);
+  transform-origin: bottom left;
+}
+ */
+</style>
+
 <style scoped>
 
 /* topbar css */
@@ -154,6 +180,8 @@ export default {
   font-family: 'Arapey', serif;
 
   padding: 0 30px;
+
+  box-shadow: var(--box-shadow-2);
 
   /* border-bottom: 2px solid var(--light-color); */
 
@@ -211,10 +239,7 @@ export default {
   /*font-size: 22px;*/
 }
 
-.router-link.active{
-  color: #d54646;
-  font-size: 22px;
-}
+
 a:hover{
   color: #d54646
 }
@@ -280,6 +305,11 @@ svg{
 }
 .ham2.active .bottom {
   stroke-dashoffset: -102px;
+}
+
+
+.active-route{
+  color: var(--palette-1-color-2);
 }
 
 @media screen and (max-width: 768px) {

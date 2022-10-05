@@ -26,6 +26,9 @@
         </div>
       </div>
     </div>
+
+    <InstagramGalleryComponent></InstagramGalleryComponent>
+    <!-- <GsapGallery1></GsapGallery1> -->
     <div class="section-icon">
       <img src="@/assets/icons/worldwide.png">
     </div>
@@ -33,7 +36,6 @@
       <LeafletComponent></LeafletComponent>
     </div>
 
-    <!-- <InstagramGalleryComponent></InstagramGalleryComponent> -->
 
   </div>
 </template>
@@ -42,12 +44,14 @@
 import ViewTitleComponent from "@/components/home/ViewTitle.component";
 import LeafletComponent from "@/components/leaflet/Leaflet.component";
 import InstagramGalleryComponent from "@/components/instagram/InstagramGallery.component";
+import GsapGallery1 from "@/components/gallery/GsapGallery1";
 export default {
   name: "ContactView",
   components: {
     ViewTitleComponent,
     LeafletComponent,
-    InstagramGalleryComponent
+    InstagramGalleryComponent,
+    GsapGallery1
   },
   data(){
     return{

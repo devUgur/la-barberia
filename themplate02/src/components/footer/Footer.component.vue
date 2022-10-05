@@ -9,32 +9,10 @@
         </div>
         <div class="opening">
           <div class="title"> Öffnungszeiten </div>
-
-          <div class="date">
-            <div class="day">Montag</div>
-            <div class="time">geschlossen</div>
+          <div class="date" v-for="date in oeffnungszeiten">
+            <div class="day">{{ date.tag }}</div>
+            <div class="time">{{ date.uhrzeit }}</div>
           </div>
-          <div class="date">
-            <div class="day">Dienstag</div>
-            <div class="time">10:00 - 20:00</div>
-          </div>
-          <div class="date">
-            <div class="day">Mittwoch</div>
-            <div class="time">10:00 - 20:00</div>
-          </div>
-          <div class="date">
-            <div class="day">Donnerstag</div>
-            <div class="time">10:00 - 20:00</div>
-          </div>
-          <div class="date">
-            <div class="day">Freitag</div>
-            <div class="time">10:00 - 20:00</div>
-          </div>
-          <div class="date">
-            <div class="day">Samstag</div>
-            <div class="time">10:00 - 20:00</div>
-          </div>
-
         </div>
         <div class="address">
           <div>
@@ -82,11 +60,17 @@
 <script>
 import CurvedLogoComponent from "@/components/logo/CurvedLogo.component";
 import AppointmentBtnComponent from "@/components/intro/AppointmentBtn.component";
+import Oeffnungszeiten from "@/objects/oeffnungszeiten";
 export default {
   name: "FooterComponent",
   components: {
     CurvedLogoComponent,
     AppointmentBtnComponent
+  },
+  data(){
+    return{
+      oeffnungszeiten: Oeffnungszeiten,
+    }
   }
 }
 </script>
@@ -140,6 +124,9 @@ export default {
   display: flex;
   flex-direction: column;
   place-items: center;
+}
+.logo a {
+  color: var(--light-color);
 }
 .opening .title , .address .title , .socialmedia .title{
   color: var(--light-color);

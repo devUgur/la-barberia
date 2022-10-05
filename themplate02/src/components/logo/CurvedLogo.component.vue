@@ -1,6 +1,6 @@
 <template>
   <div class="curved-logo">
-    <img src="@/assets/LaBarberia-Logo-Webp.webp">
+    <img src="@/assets/logo/logo-trans-light.png">
   </div>
 </template>
 
@@ -28,6 +28,8 @@ export default {
   backdrop-filter: blur(8px);
 
   border-radius: 50%;
-  border: 3px solid var(--light-color);
+  border: 4px solid var(--light-color);
+
+  box-shadow: var(--box-shadow-2);
 }
 </style>

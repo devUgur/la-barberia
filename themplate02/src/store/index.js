@@ -5,6 +5,7 @@ import StyleModule from "@/store/modules/style.module";
 import MenuModule from "@/store/modules/menu.module";
 import ListenersModule from "@/store/modules/listeners.store"
 import NavModule from "@/store/modules/nav.module";
+import InstagramModule from "@/store/modules/instagram.store";
 
 export default createStore({
   state: {
@@ -19,6 +20,7 @@ export default createStore({
     style: StyleModule,
     nav: NavModule,
     menu: MenuModule,
-    listeners: ListenersModule
+    listeners: ListenersModule,
+    instagram: InstagramModule
   }
 })

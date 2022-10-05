@@ -93,7 +93,7 @@ export default {
       const tl = gsap.to(el, {
         opacity: 1,
         stagger: 0.20,
-        duration: 0.2
+        duration: 1
       })
     },
     afterEnterAnimation(el){}
@@ -117,35 +117,28 @@ export default {
 
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 22px;
+  font-size: clamp(2rem, 6vw, 3rem);
 
 }
 
 .viewTitle .text{
   width: 100%;
   text-align: center;
-  color: var(--light-color);
+  color: var(--palette-1-color-2);
   margin: 0 20px;
-
 }
 
-.viewTitle div{
-  transition: all 0.7s;
-}
 
-.viewTitle{
-  transition: all 0.7s;
-}
+
 
 .viewTitle .left{
   width: 100%;
-  border-bottom: 1px solid var(--light-color);
-  transition: all 0.7s;
+  border-bottom: 1px solid var(--palette-1-color-2);
 }
 
 .viewTitle .right{
   width: 100%;
-  border-bottom: 1px solid var(--light-color);
+  border-bottom: 1px solid var(--palette-1-color-2);
 }
 
 .text .value{
