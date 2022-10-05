@@ -10,7 +10,7 @@
         <div class="tel"> 0231 / 95018336</div>
         <div class="email"> info@la-barberia.de </div>
         <div class="ceo"> Geschäftsführer: Thorben Bühne </div>
-        <div class="fee-id">Umsatzsteuer-ID: -----------</div>
+        <div class="fee-id">Umsatzsteuer-ID: 317/5026/2752div>
       </div>
 
       <div class="content">
