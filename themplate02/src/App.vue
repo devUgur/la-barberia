@@ -44,7 +44,6 @@ export default {
   data(){
     return{
       loadedData: false,
-      instagramAccessToken: 'IGQVJWNVpQdnh5UFRpazJrQ2FTNDhBLTlqNHM3c2hTdjZAmRUwyNzBnSWE0U3ZAvcG1sUGFUYnhVVWx3TTZADNDhONVJBTUQ0eFJ1ZAmpPQVh4UWwxbWNZAZAnZAPa3FlOUh0RFI0VTdWYjdVUl8tdkFVT1otSgZDZD'
     }
   },
   created() {
